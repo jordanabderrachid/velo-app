@@ -1,0 +1,36 @@
+{
+  "name": "velo-app",
+  "version": "0.0.1",
+  "description": "This is an API used to fetch bikes availability data.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanabderrachid/velo-app.git"
+  },
+  "keywords": [
+    "api",
+    "open-data",
+    "bike",
+    "rest",
+    "influxdb",
+    "charts"
+  ],
+  "author": "Jordan Abderrachid <jabderrachid@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jordanabderrachid/velo-app/issues"
+  },
+  "homepage": "https://github.com/jordanabderrachid/velo-app#readme",
+  "private": "true",
+  "dependencies": {
+    "express": "^4.13.3",
+    "request": "^2.67.0"
+  },
+  "engines": {
+    "node": ">=5.1.0"
+  }
+}

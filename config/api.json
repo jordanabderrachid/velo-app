@@ -1,0 +1,5 @@
+{
+    "endpoint": "https://api.jcdecaux.com/vls/v1/stations/",
+    "contractName": "Lyon",
+    "timeout": 1500
+}
