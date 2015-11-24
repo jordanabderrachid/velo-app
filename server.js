@@ -12,10 +12,9 @@ if (!process.env['BIKE_API_KEY']) {
 }
 
 app.use('/api', function (req, res, next) {
-    // Allow CORS and set the proper content-type header.
+    // Allow CORS.
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Content-Type', 'application/json; charset=utf-8');
     next();
 });
 
