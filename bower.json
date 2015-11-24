@@ -1,0 +1,30 @@
+{
+  "name": "velo-app",
+  "description": "This is an API used to fetch bikes availability data.",
+  "main": "server.js",
+  "authors": [
+    "Jordan Abderrachid <jabderrachid@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "api",
+    "open-data",
+    "bike",
+    "rest",
+    "influxdb",
+    "charts"
+  ],
+  "homepage": "https://github.com/jordanabderrachid/velo-app",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/libs",
+    "test",
+    "tests"
+  ]
+}
