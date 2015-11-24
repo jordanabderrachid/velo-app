@@ -26,5 +26,8 @@
     "./public/libs",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "mapbox.js": "~2.2.3"
+  }
 }
