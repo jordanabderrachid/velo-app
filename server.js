@@ -21,6 +21,8 @@ app.use('/api', function (req, res, next) {
 
 app.use('/api', stationsRoutes);
 
+app.use('/', express.static('public'));
+
 app.listen(8080, function () {
     console.info('Server running on port 8080.');
 });
