@@ -3,7 +3,7 @@
 var express = require('express');
 
 var app = express();
-var stationsRoutes = require('./src/routes/stations');
+var citiesRoutes = require('./src/routes/cities');
 
 if (!process.env['BIKE_API_KEY']) {
     console.warn('WARNING : The environment variable $BIKE_API_KEY is not configured.');
@@ -18,7 +18,7 @@ app.use('/api', function (req, res, next) {
     next();
 });
 
-app.use('/api', stationsRoutes);
+app.use('/api', citiesRoutes);
 
 app.use('/', express.static('public'));
 

@@ -5,7 +5,7 @@
 
     var apiRequest = new XMLHttpRequest();
 
-    apiRequest.open('GET', '/api/stations');
+    apiRequest.open('GET', '/api/cities/lyon/stations');
 
     apiRequest.addEventListener('load', function () {
         var stations = JSON.parse(this.response);

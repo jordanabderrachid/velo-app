@@ -17,11 +17,16 @@ You'll need a private API key to use the JCDecaux services. You can ask one on t
 ## Usage
 
 ```
-GET /api/stations
+GET /api/cities
 ```
-- Return the complete list of stations.
+- Return the list of the cities.
 
 ```
-GET /api/stations/station_id
+GET /api/cities/city_name/stations
 ```
-- Return infos of the station identified by its `station_id`.
+- Return the complete list of stations at the given `city_name`.
+
+```
+GET /api/cities/city_name/stations/station_id
+```
+- Return infos of the station identified by its `station_id` and at the given `city_name`.
