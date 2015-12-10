@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('velo-app').controller('MainCtrl', function ($scope) {
+angular.module('velo-app').controller('MainCtrl', ['$scope', 'apiService', function ($scope, apiService) {
     $scope.initialize = function () {
         var map = L.mapbox.map('map', 'mapbox.streets');
 
@@ -27,6 +27,6 @@ angular.module('velo-app').controller('MainCtrl', function ($scope) {
 
         apiRequest.send();
     };
-
+    
     $scope.initialize();
-});
+}]);
