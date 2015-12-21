@@ -5,7 +5,7 @@ var request = require('request');
 var apiConfig = require('../../config/api');
 
 var _buildURL = function (city, stationId) {
-    return apiConfig.stationEndpoint + (stationId ? stationId + '/' : '') +'?apiKey=' + process.env['BIKE_API_KEY'] + '&contract=' + city;
+    return apiConfig.stationEndpoint + (stationId ? stationId + '/' : '') +'?apiKey=' + process.env['BIKE_API_KEY'] + (city ? '&contract=' + city : '');
 };
 
 var _handleCallback = function (error, response, body, callback) {
@@ -17,8 +17,15 @@ var _handleCallback = function (error, response, body, callback) {
     }
 };
 
+// TODO: needs a refactoring.
 module.exports = {
-    getStations: function (city, callback) {
+    getStations: function (callback) {
+        request(_buildURL(), {timeout: apiConfig.timeout}, function (error, response, body) {
+            _handleCallback(error, response, body, callback);
+        });
+    },
+
+    getStationsByCity: function (city, callback) {
         request(_buildURL(city), {timeout: apiConfig.timeout}, function (error, response, body) {
             _handleCallback(error, response, body, callback);
         });

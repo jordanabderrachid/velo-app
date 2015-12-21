@@ -5,6 +5,8 @@ var express = require('express');
 var app = express();
 var citiesRoutes = require('./src/routes/cities');
 
+var databasePopulatorService = require('./src/services/database-populator');
+
 if (!process.env['BIKE_API_KEY']) {
     console.warn('WARNING : The environment variable $BIKE_API_KEY is not configured.');
 } else {
@@ -24,4 +26,5 @@ app.use('/', express.static('public'));
 
 app.listen(8080, function () {
     console.info('Server running on port 8080.');
+    databasePopulatorService.start();
 });

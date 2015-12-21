@@ -15,7 +15,7 @@ router.get('/:city_name/stations/:station_id', function (req, res) {
 });
 
 router.get('/:city_name/stations', function (req, res) {
-    apiService.getStations(req.params.city_name, function (error, stations) {
+    apiService.getStationsByCity(req.params.city_name, function (error, stations) {
         if (error) {
             res.status(500).end();
         } else {
