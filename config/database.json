@@ -1,5 +1,5 @@
 {
-    "populateCronTime": "* * * * * *",
+    "populateCronTime": "0 * * * * *",
     "host": "localhost",
     "port": 8086,
     "databaseName": "velo",
