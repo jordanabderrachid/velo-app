@@ -1,7 +1,8 @@
 'use strict';
 
-var express = require('express');
+var chalk = require('chalk');
 var blocked = require('blocked');
+var express = require('express');
 
 var app = express();
 var citiesRoutes = require('./src/routes/cities');
@@ -9,9 +10,9 @@ var citiesRoutes = require('./src/routes/cities');
 var databasePopulatorService = require('./src/services/database-populator');
 
 if (!process.env['BIKE_API_KEY']) {
-    console.warn('WARNING : The environment variable $BIKE_API_KEY is not configured.');
+    console.warn(chalk.red('WARNING : The environment variable $BIKE_API_KEY is not configured.'));
 } else {
-    console.log('The $BIKE_API_KEY is ' + process.env['BIKE_API_KEY']);
+    console.log(chalk.green('The $BIKE_API_KEY is ' + process.env['BIKE_API_KEY']));
 }
 
 app.use('/api', function (req, res, next) {
@@ -31,5 +32,5 @@ app.listen(8080, function () {
 });
 
 blocked(function (ms) {
-  console.log('BLOCKED FOR %sms', ms | 0);
+  console.warn(chalk.red('THE EVENT LOOP WAS BLOCKED FOR %sms'), ms | 0);
 });

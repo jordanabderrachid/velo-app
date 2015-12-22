@@ -10,14 +10,14 @@ var DatabasePopulator = function () {
     this.fetchStationsJob = new CronJob({
         cronTime: databaseConfig.populateCronTime,
         onTick: function () {
-            console.log('Now starting a worker to fetch stations. ' + (new Date().toISOString()));
+            console.log('Now starting a worker to fetch stations. %s', new Date().toISOString());
             child_process.fork(path.join(__dirname, '../workers/database-populator'));   
         }
     });
 };
 
 DatabasePopulator.prototype.start = function () {
-    console.log('Job set up to fetch stations based on cron time : ' + databaseConfig.populateCronTime);
+    console.log('Job set up to fetch stations based on cron time : [%s]', databaseConfig.populateCronTime);
     this.fetchStationsJob.start();
 };
 
