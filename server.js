@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var blocked = require('blocked');
 
 var app = express();
 var citiesRoutes = require('./src/routes/cities');
@@ -27,4 +28,8 @@ app.use('/', express.static('public'));
 app.listen(8080, function () {
     console.info('Server running on port 8080.');
     databasePopulatorService.start();
+});
+
+blocked(function (ms) {
+  console.log('BLOCKED FOR %sms', ms | 0);
 });
