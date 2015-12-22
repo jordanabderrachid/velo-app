@@ -2,6 +2,7 @@
 
 var chalk = require('chalk');
 var blocked = require('blocked');
+var debugLoop = require('debug')('loop');
 var express = require('express');
 
 var app = express();
@@ -32,5 +33,5 @@ app.listen(8080, function () {
 });
 
 blocked(function (ms) {
-  console.warn(chalk.red('THE EVENT LOOP WAS BLOCKED FOR %sms'), ms | 0);
+  debugLoop('THE EVENT LOOP WAS BLOCKED FOR %sms', ms | 0);
 });
