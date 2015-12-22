@@ -6,6 +6,8 @@ This app is an API used to fetch the current availability of bike share service 
 
 You'll need a private API key to use the JCDecaux services. You can ask one on the [developer website](https://developer.jcdecaux.com).
 
+[InfluxDB](https://github.com/influxdb/influxdb) is also required to persist the station infos.
+
 ## Setting things up
 
 1. Define your private API key `export BIKE_API_KEY=my-super-secret-key`
