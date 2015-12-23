@@ -59,7 +59,14 @@ DatabaseService.prototype.getCities = function (callback) {
     var query = util.format(QUERY_TEMPLATE, databaseConfig.serieName, 'city');
 
     debug('QUERY: [%s]', query);
-    this._client.query(query, callback);
+    this._client.query(query, function (error, results) {
+        if (error) {
+            console.error('An error occured while fetching cities from database. %s', error.message);
+            callback(error);
+        } else {
+            callback(null, results);
+        }
+    });
 };
 
 DatabaseService.prototype.isCityLabel = function (city) {

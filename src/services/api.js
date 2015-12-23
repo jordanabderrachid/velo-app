@@ -35,11 +35,5 @@ module.exports = {
         request(_buildURL(city, stationId), {timeout: apiConfig.timeout}, function (error, response, body) {
             _handleCallback(error, response, body, callback);
         });
-    },
-
-    getCities: function (callback) {
-        request(apiConfig.cityEndpoint + '?apiKey=' + process.env['BIKE_API_KEY'], {timeout: apiConfig.timeout}, function (error, response, body) {
-            _handleCallback(error, response, body, callback);
-        });
     }
 };

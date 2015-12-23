@@ -1,5 +1,4 @@
 {
     "stationEndpoint": "https://api.jcdecaux.com/vls/v1/stations/",
-    "cityEndpoint": "https://api.jcdecaux.com/vls/v1/contracts/",
     "timeout": 1500
 }
