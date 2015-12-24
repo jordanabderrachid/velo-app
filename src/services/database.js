@@ -42,7 +42,7 @@ DatabaseService.prototype.getLatestStations = function (city, callback) {
         return;
     }
 
-    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' GROUP BY number ORDER BY time DESC LIMIT 1;';
+    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' AND time > now() - 1m;';
     var query = util.format(QUERY_TEMPLATE, databaseConfig.serieName, city);
 
     debug('QUERY: [%s]', query);
@@ -58,7 +58,7 @@ DatabaseService.prototype.getLatestStation = function (city, number, callback) {
         return;
     }
 
-    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' AND number=\'%s\' ORDER BY time DESC LIMIT 1;';
+    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' AND number=\'%s\' AND time > now() - 1m;';
     var query = util.format(QUERY_TEMPLATE, databaseConfig.serieName, city, number);
 
     debug('QUERY: [%s]', query);
