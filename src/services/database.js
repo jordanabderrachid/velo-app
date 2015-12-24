@@ -74,7 +74,7 @@ DatabaseService.prototype.getCities = function (callback) {
 };
 
 DatabaseService.prototype.isCityLabel = function (city) {
-    return (new RegExp('^[a-z]+$', 'g')).test(city);
+    return (new RegExp('^[a-z][a-z-]+[a-z]$', 'g')).test(city);
 };
 
 DatabaseService.prototype.isNumberLabel = function (number) {
