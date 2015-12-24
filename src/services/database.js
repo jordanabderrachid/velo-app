@@ -17,6 +17,17 @@ var DatabaseService = function () {
     });
 };
 
+var _handleCallback = function (callback) {
+    return function (error, results) {
+        if (error) {
+            console.error('An error occured while fetching database. %s', error.message);
+            callback(error);
+        } else {
+            callback(null, results);
+        }
+    }
+};
+
 DatabaseService.prototype.persistStations = function (stations, callback) {
     debug('Starting to persist %d stations.', stations.length);
     this._client.writePoints(databaseConfig.serieName, stations, callback);
@@ -31,11 +42,11 @@ DatabaseService.prototype.getLatestStations = function (city, callback) {
         return;
     }
 
-    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' GROUP BY number ORDER BY time DESC LIMIT 1';
+    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' GROUP BY number ORDER BY time DESC LIMIT 1;';
     var query = util.format(QUERY_TEMPLATE, databaseConfig.serieName, city);
 
     debug('QUERY: [%s]', query);
-    this._client.query(query, callback);
+    this._client.query(query, _handleCallback(callback));
 };
 
 DatabaseService.prototype.getLatestStation = function (city, number, callback) {
@@ -47,26 +58,19 @@ DatabaseService.prototype.getLatestStation = function (city, number, callback) {
         return;
     }
 
-    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' AND number=\'%s\' ORDER BY time DESC LIMIT 1';
+    var QUERY_TEMPLATE = 'SELECT * FROM %s WHERE city=\'%s\' AND number=\'%s\' ORDER BY time DESC LIMIT 1;';
     var query = util.format(QUERY_TEMPLATE, databaseConfig.serieName, city, number);
 
     debug('QUERY: [%s]', query);
-    this._client.query(query, callback);
+    this._client.query(query, _handleCallback(callback));
 };
 
 DatabaseService.prototype.getCities = function (callback) {
-    var QUERY_TEMPLATE = 'SHOW TAG VALUES FROM %s WITH KEY = %s';
+    var QUERY_TEMPLATE = 'SHOW TAG VALUES FROM %s WITH KEY = %s;';
     var query = util.format(QUERY_TEMPLATE, databaseConfig.serieName, 'city');
 
     debug('QUERY: [%s]', query);
-    this._client.query(query, function (error, results) {
-        if (error) {
-            console.error('An error occured while fetching cities from database. %s', error.message);
-            callback(error);
-        } else {
-            callback(null, results);
-        }
-    });
+    this._client.query(query, _handleCallback(callback));
 };
 
 DatabaseService.prototype.isCityLabel = function (city) {
