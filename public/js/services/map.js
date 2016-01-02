@@ -12,7 +12,7 @@ angular.module('velo-app').factory('mapService', ['stationService', function (st
             var stationMarkers = [];
 
             stations.forEach(function (station) {
-                var stationMarker = L.marker(L.latLng(station.position.lat, station.position.lng));
+                var stationMarker = L.marker(L.latLng(station.position.lat, station.position.lng), {icon: stationService.getIcon(station)});
                 var popup = L.popup().setContent(stationService.getPopupHTML(station));
                 stationMarker.bindPopup(popup);
 
