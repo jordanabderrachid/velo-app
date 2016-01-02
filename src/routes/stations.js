@@ -2,7 +2,6 @@
 
 var router = require('express').Router();
 
-var apiService = require('../services/api');
 var databaseService = require('../services/database');
 
 router.get('/:city_name/stations/:station_id', function (req, res) {

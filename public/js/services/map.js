@@ -1,4 +1,4 @@
-'use stict';
+'use strict';
 
 angular.module('velo-app').factory('mapService', function () {
     var map;

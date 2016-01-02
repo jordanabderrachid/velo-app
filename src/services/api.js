@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var util = require('util');
 var request = require('request');
@@ -6,7 +6,7 @@ var request = require('request');
 var apiConfig = require('../../config/api');
 
 var _buildURL = function () {
-    return util.format('%s?apiKey=%s', apiConfig.stationEndpoint, process.env['BIKE_API_KEY']);
+    return util.format('%s?apiKey=%s', apiConfig.stationEndpoint, process.env.BIKE_API_KEY);
 };
 
 var _handleCallback = function (callback) {
@@ -17,7 +17,7 @@ var _handleCallback = function (callback) {
         } else {
             callback(null, JSON.parse(body));
         }
-    }
+    };
 };
 
 module.exports = {

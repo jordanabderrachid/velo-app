@@ -21,14 +21,14 @@ apiService.getStations(function (error, stations) {
                 available_bikes: station.available_bikes,
                 bike_stands: station.bike_stands,
                 status: station.status.toLowerCase()
-            }
+            };
 
             var tags = {
                 city: station.contract_name.toLowerCase(),
-                number: new String(station.number),
-                lat: new String(station.position.lat),
-                lng: new String(station.position.lng)
-            }
+                number: station.number.toString(),
+                lat: station.position.lat.toString(),
+                lng: station.position.lng.toString()
+            };
 
             point.push(values);
             point.push(tags);

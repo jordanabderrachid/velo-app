@@ -1,0 +1,14 @@
+{
+    "curly": true,
+    "eqeqeq": true,
+    "freeze": true,
+    "globals": {
+        "angular": true,
+        "L": true
+    },
+    "latedef": true,
+    "strict": true,
+    "undef": true,
+    "unused": true,
+    "node": true
+}

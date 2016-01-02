@@ -25,7 +25,7 @@ var _handleCallback = function (callback) {
         } else {
             callback(null, results);
         }
-    }
+    };
 };
 
 DatabaseService.prototype.persistStations = function (stations, callback) {

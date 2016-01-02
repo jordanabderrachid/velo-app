@@ -10,10 +10,10 @@ var citiesRoutes = require('./src/routes/cities');
 
 var databasePopulatorService = require('./src/services/database-populator');
 
-if (!process.env['BIKE_API_KEY']) {
+if (!process.env.BIKE_API_KEY) {
     console.warn(chalk.red('WARNING : The environment variable $BIKE_API_KEY is not configured.'));
 } else {
-    console.log(chalk.green('The $BIKE_API_KEY is ' + process.env['BIKE_API_KEY']));
+    console.log(chalk.green('The $BIKE_API_KEY is ' + process.env.BIKE_API_KEY));
 }
 
 app.use('/api', function (req, res, next) {
