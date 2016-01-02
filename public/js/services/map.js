@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('velo-app').factory('mapService', function () {
+angular.module('velo-app').factory('mapService', ['stationService', function (stationService) {
     var map;
     
     return {
@@ -13,6 +13,8 @@ angular.module('velo-app').factory('mapService', function () {
 
             stations.forEach(function (station) {
                 var stationMarker = L.marker(L.latLng(station.position.lat, station.position.lng));
+                var popup = L.popup().setContent(stationService.getPopupHTML(station));
+                stationMarker.bindPopup(popup);
 
                 stationMarkers.push(stationMarker);
             });
@@ -23,4 +25,4 @@ angular.module('velo-app').factory('mapService', function () {
             map.fitBounds(group.getBounds());
         }
     };
-});
+}]);
