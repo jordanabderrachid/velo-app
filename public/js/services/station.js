@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('velo-app').factory('stationService', function () {
+angular.module('velo-app').factory('stationService', ['$templateRequest', '$compile', '$rootScope', function ($templateRequest, $compile, $rootScope) {
     var icons = {
         red_bicycle: '/images/bicycle-24-red.svg',
         orange_bicycle: '/images/bicycle-24-orange.svg',
@@ -8,13 +8,13 @@ angular.module('velo-app').factory('stationService', function () {
     };
 
     return {
-        getPopupHTML: function (station) {
-            var html = [];
-            html.push('<p>');
-            html.push('Vélos disponibles: ' + station.available_bikes + '<br />');
-            html.push('Bornes disponibles: ' + station.available_bike_stands + '<br />');
-            html.push('</p>');
-            return html.join('');
+        getPopupHTML: function (station, cb) {
+            $templateRequest('/views/popup-station.html').then(function (html) {
+                var $scope = $rootScope.$new(true);
+                $scope.station = station;
+
+                cb($compile(html)($scope));
+            });
         },
         getIcon: function (station) {
             var iconUrl = '';
@@ -33,4 +33,4 @@ angular.module('velo-app').factory('stationService', function () {
             });
         }
     };
-});
+}]);
