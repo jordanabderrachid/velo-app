@@ -73,6 +73,22 @@ DatabaseService.prototype.getCities = function (callback) {
     this._client.query(query, _handleCallback(callback));
 };
 
+DatabaseService.prototype.getGraph = function (city, number, callback) {
+    city = city.toLowerCase();
+
+    if (!this.isCityLabel(city) || !this.isNumberLabel(number)) {
+        debug('Incorrect parameters city: [%s] number: [%s]', city, number);
+        callback();
+        return;
+    }
+
+    var QUERY_TEMPLATE = 'SELECT available_bikes, available_bike_stands FROM %s WHERE city=\'%s\' AND number=\'%s\' AND time > now() - 24h;';
+    var query = util.format(QUERY_TEMPLATE, databaseConfig.serieName, city, number);
+
+    debug('QUERY: [%s]', query);
+    this._client.query(query, _handleCallback(callback));
+};
+
 DatabaseService.prototype.isCityLabel = function (city) {
     return (new RegExp('^[a-z][a-z-]+[a-z]$', 'g')).test(city);
 };

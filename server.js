@@ -7,6 +7,7 @@ var express = require('express');
 
 var app = express();
 var citiesRoutes = require('./src/routes/cities');
+var graphRoutes = require('./src/routes/graph');
 
 var databasePopulatorService = require('./src/services/database-populator');
 
@@ -24,6 +25,7 @@ app.use('/api', function (req, res, next) {
 });
 
 app.use('/api', citiesRoutes);
+app.use('/api', graphRoutes);
 
 app.use('/', express.static('public'));
 

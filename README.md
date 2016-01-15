@@ -32,3 +32,8 @@ GET /api/cities/city_name/stations
 GET /api/cities/city_name/stations/station_id
 ```
 - Return infos of the station identified by its `station_id` and at the given `city_name`.
+
+```
+GET /api/graph/city_name/station_id
+```
+- Return the points of the last 24 hours for the station identified by its `station_id` and at the given `city_name`.
