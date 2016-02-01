@@ -1,38 +1,27 @@
 'use strict';
 
-angular.module('velo-app').factory('mapService', ['stationService', '$q', function (stationService, $q) {
+angular.module('velo-app').factory('mapService', ['stationService', function (stationService) {
     var map;
     
     return {
-        buildMap: function () {
+        buildMap: function (onClick) {
             map = L.mapbox.map('map', 'mapbox.streets');
+            map.on('click', onClick);
             return map;
         },
-        drawStations: function (stations) {
+        drawStations: function (stations, onClick) {
             var stationMarkers = [];
 
-            var promises = [];
             stations.forEach(function (station) {
                 var stationMarker = L.marker(L.latLng(station.position.lat, station.position.lng), {icon: stationService.getIcon(station)});
-                var deferred = $q.defer();
-                promises.push(deferred.promise);
-                stationService.getPopupHTML(station, function (element) {
-                    // Little hack to convert this to a Node.
-                    var popup = L.popup().setContent(element[0]);
+                stationMarker.on('click', function () { onClick(station) });
 
-                    stationMarker.bindPopup(popup);
-                    stationMarkers.push(stationMarker);
-                    deferred.resolve();
-                });
+                stationMarkers.push(stationMarker);
             });
 
-            // Once all popups are build.
-            $q.all(promises).then(function () {
-                var group = L.featureGroup(stationMarkers);
-                group.addTo(map);
-
-                map.fitBounds(group.getBounds());
-            });
+            var group = L.featureGroup(stationMarkers);
+            group.addTo(map);
+            map.fitBounds(group.getBounds());
         }
     };
 }]);

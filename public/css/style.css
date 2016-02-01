@@ -8,4 +8,23 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
+    z-index: 0;
+}
+
+#side_panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0%;
+    right: 0;
+    z-index: 1;
+    background-color: #F5F5F5;
+    box-shadow: 9px 0px 17px 8px black;
+
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+
+.container {
+    width: auto;
 }

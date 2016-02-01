@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('velo-app').factory('stationService', ['$templateRequest', '$compile', '$rootScope', function ($templateRequest, $compile, $rootScope) {
+angular.module('velo-app').factory('stationService', function () {
     var icons = {
         red_bicycle: '/images/bicycle-24-red.svg',
         orange_bicycle: '/images/bicycle-24-orange.svg',
@@ -8,14 +8,6 @@ angular.module('velo-app').factory('stationService', ['$templateRequest', '$comp
     };
 
     return {
-        getPopupHTML: function (station, cb) {
-            $templateRequest('/views/popup-station.html').then(function (html) {
-                var $scope = $rootScope.$new(true);
-                $scope.station = station;
-
-                cb($compile(html)($scope));
-            });
-        },
         getIcon: function (station) {
             var iconUrl = '';
 
@@ -33,4 +25,4 @@ angular.module('velo-app').factory('stationService', ['$templateRequest', '$comp
             });
         }
     };
-}]);
+});
